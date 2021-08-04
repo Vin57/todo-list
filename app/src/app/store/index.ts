@@ -1,7 +1,7 @@
 import { ActionReducerMap } from '@ngrx/store';
 import { todosReducer, TodoState } from './todo.reducer';
 
-export const STORE_PART_TODOS = 'todos';
+export const STORE_KEY_TODOS = 'todos';
 
 // Représentation concrète de notre State
 export interface MyState {
