@@ -10,6 +10,4 @@ EXPOSE 4200 49153
 
 COPY . .
 
-RUN npm run build
-
 CMD [ "npm", "start"]

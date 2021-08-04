@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,6 +17,9 @@ import { reducers } from './store';
     FormsModule,
     FlexLayoutModule,
     StoreModule.forRoot(reducers),
+    StoreDevtoolsModule.instrument({
+      name: 'todo app',
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],
