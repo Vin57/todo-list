@@ -7,7 +7,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
-import { reducers } from './shared/store';
+import { metaReducers, reducers } from './shared/store';
 import { RouterModule } from '@angular/router';
 import { APP_ROUTES } from './app.routes';
 import {
@@ -23,7 +23,7 @@ import { MyRouterSerialize } from './shared/store/my-router.serializer';
     BrowserModule,
     HttpClientModule,
     FlexLayoutModule,
-    StoreModule.forRoot(reducers),
+    StoreModule.forRoot(reducers, { metaReducers: metaReducers }),
     EffectsModule.forRoot(),
     StoreDevtoolsModule.instrument({
       name: 'todo app',
