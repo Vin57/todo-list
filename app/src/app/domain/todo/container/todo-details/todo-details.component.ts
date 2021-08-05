@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { todoElementSelector } from 'src/app/shared/store/selectors';
 import { Todo } from '../../models/todo.model';
+import { todoElementSelector } from '../../store/todo.selectors';
 
 @Component({
   selector: 'app-todo-details',

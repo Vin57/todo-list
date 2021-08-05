@@ -8,10 +8,6 @@ import {
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { MyState } from 'src/app/shared/store';
-import {
-  todoListArraySelector,
-  todoListSelector,
-} from 'src/app/shared/store/selectors';
 import { Todo } from '../models/todo.model';
 import {
   TodoFetchTodo,
@@ -19,6 +15,7 @@ import {
   TodoToggleAction,
   TodoDeleteAction,
 } from '../store/todo.actions';
+import { todoListArraySelector } from '../store/todo.selectors';
 
 @Component({
   selector: 'app-todo-container',
