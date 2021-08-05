@@ -25,7 +25,7 @@
     >
       <div class="row">
         <div class="col-2">
-          <i (click)="toggleTodo(i)" class="material-icons">{{
+          <i (click)="toggleTodo(todo.id)" class="material-icons">{{
             todo.done ? "check_box" : "check_box_outline_blank"
           }}</i>
         </div>
@@ -35,7 +35,7 @@
           </span>
         </div>
         <div class="col-5">
-          <button class="btn btn-danger" (click)="deleteTodo(i)">
+          <button class="btn btn-danger" (click)="deleteTodo(todo.id)">
             Supprimer
           </button>
         </div>

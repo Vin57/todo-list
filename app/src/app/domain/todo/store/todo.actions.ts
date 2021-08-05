@@ -14,11 +14,11 @@ export class TodoCreateAction implements Action {
 }
 export class TodoDeleteAction implements Action {
   readonly type = TODO_DELETE;
-  constructor(public payload: number) {}
+  constructor(public payload: string) {}
 }
 export class TodoToggleAction implements Action {
   readonly type = TODO_TOGGLE;
-  constructor(public payload: number) {}
+  constructor(public payload: string) {}
 }
 export class TodoFetchTodo implements Action {
   readonly type = TODO_FETCH;

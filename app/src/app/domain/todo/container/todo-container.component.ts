@@ -8,7 +8,10 @@ import {
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { MyState } from 'src/app/shared/store';
-import { todoListSelector } from 'src/app/shared/store/selectors';
+import {
+  todoListArraySelector,
+  todoListSelector,
+} from 'src/app/shared/store/selectors';
 import { Todo } from '../models/todo.model';
 import {
   TodoFetchTodo,
@@ -24,7 +27,9 @@ import {
 })
 export class TodoContainerComponent implements OnInit {
   public form: FormGroup;
-  public todos$: Observable<Todo[]> = this.store.pipe(select(todoListSelector));
+  public todos$: Observable<Todo[]> = this.store.pipe(
+    select(todoListArraySelector)
+  );
 
   constructor(private store: Store<MyState>, private fb: FormBuilder) {}
 
@@ -68,11 +73,11 @@ export class TodoContainerComponent implements OnInit {
     }
   }
 
-  public toggleTodo(index: number) {
-    this.store.dispatch(new TodoToggleAction(index));
+  public toggleTodo(id: string) {
+    this.store.dispatch(new TodoToggleAction(id));
   }
 
-  public deleteTodo(index: number) {
-    this.store.dispatch(new TodoDeleteAction(index));
+  public deleteTodo(id: string) {
+    this.store.dispatch(new TodoDeleteAction(id));
   }
 }

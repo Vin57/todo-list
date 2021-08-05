@@ -21,9 +21,18 @@ export const todoListSelector = createSelector(
   todoSelector,
   (todoState: TodoState) => todoState.datas // All 'datas' in TodoState
 );
-export const todoElementSelector = createSelector(
+export const todoListArraySelector = createSelector(
   todoSelector,
+  (todoState: TodoState) => {
+    if (todoState.datas) {
+      return Object.keys(todoState.datas).map((id) => todoState.datas[id]);
+    }
+    return null;
+  }
+);
+export const todoElementSelector = createSelector(
+  todoListSelector,
   routerStateSelector,
-  (todoState: TodoState, routerState: MyRouterState) =>
-    todoState.datas.filter((todo: Todo) => todo.id === routerState.params.id)[0]
+  (todos: { [id: string]: Todo }, routerState: MyRouterState) =>
+    todos[routerState.params.id] ?? null
 );

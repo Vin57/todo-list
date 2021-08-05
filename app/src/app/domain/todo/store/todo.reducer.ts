@@ -9,9 +9,12 @@ import {
   TODO_TOGGLE,
 } from './todo.actions';
 
-// reducer 'Action' data State description
+// TodoState spécifie un format dans notre State
 export interface TodoState {
-  datas: Todo[];
+  datas: {
+    // Id object: Object
+    [todoId: string]: Todo;
+  };
   loading: boolean;
   loaded: boolean;
   error: any;
@@ -39,7 +42,14 @@ export function todosReducer(
     case TODO_FETCH_SUCCESS:
       return {
         ...state,
-        datas: action.payload,
+        datas: action.payload.reduce(
+          (acc, t: Todo) => {
+            acc[t.id] = t;
+            return acc;
+          },
+          // On déconstruit tous l'objet contenu dans state.datas
+          { ...state.datas }
+        ),
         loading: false,
         loaded: true,
         error: null,
@@ -52,24 +62,43 @@ export function todosReducer(
         error: action.payload,
       };
     case TODO_CREATE:
-      // Les reducer étant des fonctions pures, il faut retourner un nouveau state.
+      // Ici, nous générons un id à partir du nombre d'éléments.
+      // Dans un projet "réél", les données seraient persister en base,
+      // et l'id serait obtenu depuis la BDD.
+      const lastId = Object.keys(state.datas).length
+        ? Object.keys(state.datas).reduce((acc, id: string) => id)
+        : '0';
+      const uid = (lastId + 1).toString();
+      // On retourne comme toujours un nouveau state,
+      // et l'on modifie sa propriété datas en lui ajoutant un nouvel élément.
       return {
         ...state,
-        datas: [...state.datas, action.payload],
+        datas: { ...state.datas, [uid]: { ...action.payload, id: uid } },
       };
     case TODO_DELETE:
+      const dataWithoutDeletedTodo = Object.keys(state.datas).reduce(
+        (acc, id: string) => {
+          if (id !== action.payload) {
+            acc[id] = state.datas[id];
+          }
+          return acc;
+        },
+        {}
+      );
       return {
         ...state,
-        datas: state.datas.filter(
-          (todo: Todo, index: number) => index !== action.payload
-        ),
+        datas: dataWithoutDeletedTodo,
       };
     case TODO_TOGGLE:
       return {
         ...state,
-        datas: state.datas.map((todo: Todo, index: number) =>
-          index === action.payload ? { ...todo, done: !todo.done } : { ...todo }
-        ),
+        datas: {
+          ...state.datas,
+          [action.payload]: {
+            ...state.datas[action.payload],
+            done: !state.datas[action.payload].done,
+          },
+        },
       };
     default:
       return state;
