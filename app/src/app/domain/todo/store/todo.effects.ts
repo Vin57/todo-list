@@ -3,8 +3,8 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
-import { Todo } from '../todo.model';
-import { TodoService } from '../todo.service';
+import { Todo } from '../models/todo.model';
+import { TodoService } from '../services/todo.service';
 import {
   TodoFetchTodo,
   TodoFetchTodoError,

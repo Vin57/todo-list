@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Todo } from '../todo.model';
+import { Todo } from '../models/todo.model';
 
 export const TODO_CREATE = '[todo] create';
 export const TODO_DELETE = '[todo] delete';

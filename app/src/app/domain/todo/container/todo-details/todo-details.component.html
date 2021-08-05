@@ -1,0 +1,6 @@
+<div>
+  <span>Selected :</span><br />
+  <div *ngIf="selectedTodo$ | async; let selectedTodo">
+    {{ selectedTodo.message }}
+  </div>
+</div>

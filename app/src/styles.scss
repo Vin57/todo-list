@@ -5,5 +5,28 @@ button.active {
   border: solid 2px #444;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.container-fluid {
+  height: 100vh;
+}
+
+.material-icons {
+  cursor: pointer;
+}
+
+.link {
+  cursor: pointer;
+}
+
+.link:hover {
+  font-weight: bold;
+  color: #444;
+}

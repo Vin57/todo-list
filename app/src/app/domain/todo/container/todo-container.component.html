@@ -1,0 +1,46 @@
+<div fxLayout="column" fxLayoutGap="20px">
+  <h3>Liste de to do</h3>
+  <div *ngIf="!(todos$ | async | empty)" class="row">
+    <div fxLayout="row" fxLayoutGap="15px" fxLayoutAlign="space-between">
+      <div class="input-group">
+        <form [formGroup]="form">
+          <input type="text" formControlName="message" class="form-control" />
+          <div class="input-group-append">
+            <button class="btn btn-primary" (click)="addTodo()" type="button">
+              Ajouter
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="todos$ | async | empty">Loading tasks...</div>
+  <ul class="list-group">
+    <li
+      *ngFor="let todo of todos$ | async; let i = index"
+      class="list-group-item"
+      fxLayout="row"
+      fxLayoutGap="15px"
+      fxLayoutAlign="center center"
+    >
+      <div class="row">
+        <div class="col-2">
+          <i (click)="toggleTodo(i)" class="material-icons">{{
+            todo.done ? "check_box" : "check_box_outline_blank"
+          }}</i>
+        </div>
+        <div class="col-5">
+          <span fxFlex="auto" class="link" [routerLink]="[todo.id]">
+            {{ todo.message }}
+          </span>
+        </div>
+        <div class="col-5">
+          <button class="btn btn-danger" (click)="deleteTodo(i)">
+            Supprimer
+          </button>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+<router-outlet></router-outlet>
