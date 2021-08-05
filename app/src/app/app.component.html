@@ -22,5 +22,6 @@
         </button>
       </li>
     </ul>
+    <div *ngIf="todos$ | async | empty">Loading tasks...</div>
   </div>
 </div>

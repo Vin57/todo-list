@@ -8,15 +8,19 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+import { TodoEffects } from './store/todo.effects';
+import { EmptyPipe } from './empty.pipe';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, EmptyPipe],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
     FlexLayoutModule,
     StoreModule.forRoot(reducers),
+    EffectsModule.forRoot([TodoEffects]),
     StoreDevtoolsModule.instrument({
       name: 'todo app',
     }),

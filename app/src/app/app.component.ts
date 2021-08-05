@@ -7,6 +7,7 @@ import {
   TodoCreateAction,
   TodoDeleteAction,
   TodoToggleAction,
+  TodoFetchTodo,
 } from './store/todo.actions';
 import { TodoState } from './store/todo.reducer';
 import { Todo } from './todo.model';
@@ -25,7 +26,10 @@ export class AppComponent implements OnInit {
 
   constructor(private store: Store<MyState>) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // Dispatch une action sur le Store
+    this.store.dispatch(new TodoFetchTodo());
+  }
 
   public addTodo() {
     this.store.dispatch(
